@@ -1,0 +1,16 @@
+<h1>{{ "Student Gymkhana : Feedback and Complaint Portal" }}</h1>
+
+{% if body_list %}
+    <ul>
+    {% for body in body_list %}
+        <h2>{{ body.nameofbody }}</h2>
+
+        <h3><a href="polls/{{body.id}}/index">{{ "See the existing Question and Vote" }}</a></h3>
+        <h3><a href="polls/{{body.id}}/combinedresult">{{ "See the polls and results" }}</a></h3>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Gymkhana body are available.</p>
+{% endif %}
+
+<h2><a href="addquestion/">{{ "Add question or complain" }}</a></h2>

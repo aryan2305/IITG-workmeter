@@ -1,0 +1,15 @@
+<h1>{{ body.nameofbody }}</h1>
+<h2>{{ body.secretary_name }}</h2>
+<hr>
+<ul>
+{% for question in latest_question_list %}
+<li>{{ question.question_text }}</li>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul><br>
+{% endfor %}
+
+</ul>
+
