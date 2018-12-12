@@ -1,12 +1,51 @@
-{% comment %} {% load static %}
+{% extends 'layout.html' %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> {% endcomment %}
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% block title %}
+{{block.super}} | {{body.nameofbody}}
+
+{% endblock title %}
+
+{% block nav %}
+	<li><a href="/">Home</a></li>
+
+{% endblock nav %}
+
+{% block mobile-nav %}
+	<li><a href="/">Home</a></li>
+	
+{% endblock mobile-nav %}
+
+
+{% block content %}
+<h3>{{ body.nameofbody }}</h3>
+<h5>{{ body.secretary_name }}</h5>
+<hr>
+<ul class="collapsible " data-collapsible="accordion">
+      {% for question in latest_question_list %}
+      <li>
+      <div class="collapsible-header"><i class="material-icons teal-text">play_arrow</i>{{question.question_text}}</div>
+      <div class="collapsible-body">
+      	<ul class="white">       
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+          <form action="{% url 'polls:vote' question.id %}" method="post">
+          {% csrf_token %}
+          {% for  choice in  question.choice_set.all %}
+          <li class="teal-text " style="padding:5px 10px 5px 10px;margin:10px auto"><div style="display:inline-block" class="material-icons left"></div><div style="display:inline-block">
+          <input type="radio" name="choice" id="choice{{ forloop.counter}}" value="{{ choice.id }}">
+          <label for="choice{{ forloop.counter }}">{{ choice.choice_text}}
+          </label>
+          </div>
+          <br>
+          </li>
+        {% endfor %}
+        <input type="submit" value="Vote">
+        </form>     	
+        </ul>
+
+      </div>
+      </li>
+      {% endfor %}
+</ul>
+{% endblock content %}
+
+

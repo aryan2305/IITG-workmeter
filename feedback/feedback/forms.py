@@ -13,11 +13,16 @@ def must_be_empty(value):
 
 class QuestionForm(forms.Form):
     body = forms.ModelChoiceField(queryset=Gymkhana_body.objects.all())
-    question = forms.CharField(widget=forms.Textarea)
-    choice1 = forms.CharField()
-    choice2 = forms.CharField(required=False)
-    choice3 = forms.CharField(required=False)
-    choice4 = forms.CharField(required=False)
+    question = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'myfieldclass'}))
+    choice1 = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'myfieldclass'}))
+    choice2 = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={'class': 'myfieldclass'}))
+    choice3 = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={'class': 'myfieldclass'}))
+    choice4 = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={'class': 'myfieldclass'}))
 
     def clean(self):
         cleaned_data = super().clean()

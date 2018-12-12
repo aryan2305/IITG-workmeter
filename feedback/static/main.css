@@ -1,0 +1,54 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+#content {
+  padding: 10px;
+  padding-bottom: 60px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* Height of the footer */
+}
+
+img {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#days {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.circle {
+  /*width: 24px;/**/
+  /*height: 24px;*/
+  /*background: #89F748;*/
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  /* width and height can be anything, as long as they're equal */
+}
+
+.QUES {
+  background: #f01b13ec;
+  color: #c8e6c9;
+}
+
+.RESULT {
+  background: #ffd600;
+  color: #fff9c4;
+}

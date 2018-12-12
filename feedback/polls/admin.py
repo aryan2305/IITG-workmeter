@@ -13,6 +13,7 @@ class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['body']}),
         (None,               {'fields': ['question_text']}),
+        ('Total votes', {'fields': ['totalvotes']}),
         ('Date information', {'fields': [
          'pub_date'], 'classes': ['collapse']}),
     ]

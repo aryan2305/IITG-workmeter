@@ -1,15 +1,49 @@
-<h1>{{ body.nameofbody }}</h1>
-<h2>{{ body.secretary_name }}</h2>
-<hr>
-<ul>
-{% for question in latest_question_list %}
-<li>{{ question.question_text }}</li>
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul><br>
-{% endfor %}
+{% extends 'layout.html' %}
 
+{% block title %}
+{{block.super}} | {{body.nameofbody}}
+
+{% endblock title %}
+
+{% block nav %}
+	<li><a href="/">Home</a></li>
+
+{% endblock nav %}
+
+{% block mobile-nav %}
+	<li><a href="/">Home</a></li>
+	
+{% endblock mobile-nav %}
+
+
+{% block content %}
+<h3>{{ body.nameofbody }}</h3>
+<h5>{{ body.secretary_name }}</h5>
+<hr>
+<ul class="collapsible " data-collapsible="accordion">
+      {% for question in latest_question_list %}
+      <li>
+      <div class="collapsible-header"><i class="material-icons teal-text">play_arrow</i>{{question.question_text}}</div>
+      <div class="collapsible-body">
+      	<ul class="white">
+        
+      	{% for choice in question.choice_set.all %}
+      	
+
+      	<li class="teal-text " style="padding:5px 10px 5px 10px;margin:10px auto"><div style="display:inline-block" class="material-icons left"></div><div style="display:inline-block">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</div>
+      	<div class="progress" style="height:8px;display:round">
+		   	<div class="determinate blue dark-1" style="width: {% widthratio choice.votes question.totalvotes 100 %}%">
+		   	</div>		  			  		
+		  </div>
+        </li>
+        
+      	{% endfor %}
+        </ul>
+
+      </div>
+      </li>
+      {% endfor %}
 </ul>
+{% endblock content %}
+
 

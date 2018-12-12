@@ -1,0 +1,69 @@
+{% load staticfiles %}
+{% comment %} {% load app_filters %} {% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href='{% static "materialize/css/materialize.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "main.css" %}'>
+	<link href='{%static "icon.css"%}' rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>
+		{% block title %}
+
+		Workmeter
+
+		{% endblock title %}
+	</title>
+</head>
+<body class="blue-grey lighten-4">
+<div id="wrapper">
+<header class="indigo.darken-3">
+	{% block header %}
+	<div class="indigo.darken-3 navbar-fixed" >
+	<nav>
+	   <div class="indigo.darken-3 nav-wrapper">
+	     <a href="#!" class="brand-logo" style="margin-left:20px">IITG Gymkhana</a>
+	     <a href="#" data-activates="mobile-demo" style="margin-left:10px" class="button-collapse"><i class="material-icons">menu</i></a>
+	     <ul class="right hide-on-med-and-down">
+	     	{%block nav%}
+       			<li class="active"><a href="/">Home</a></li>
+	       		{% comment %} {% for board in boards %}
+		       		<li><a href="/{{board.title}}">{{board.title}}</a></li>
+	       		{%endfor%} {% endcomment %}
+	     	{%endblock nav%}
+	     </ul>
+	     <ul class="grey lighten-4 side-nav" id="mobile-demo">
+	     {%block mobile-nav%}
+       		<li class="active"><a href="/">Home</a></li>
+	     	{% comment %} {% for board in boards %}
+		       		<li><a href="/{{board.title}}">{{board.title}}</a></li>
+	     	{%endfor%} {% endcomment %}
+	     {%endblock mobile-nav%}
+	     </ul>
+	   </div>
+	 </nav>
+	 </div>
+	 {# </div class="navbar-fixed"> #}
+	{% endblock header %}
+</header>
+<main>
+<div id="content" class=" "  >
+{%block content%}
+{%endblock content%}
+</div>
+</main>
+<footer >
+	{% block footer %}
+		<div class="{{color}} z-depth-2 col s12" style="height:50px;text-align:right">
+		</div>
+	{% endblock footer %}
+</footer>
+</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src='{% static "materialize/js/materialize.js" %}'></script>
+	<script type="text/javascript" src='{% static "materialize/js/progressbar.js" %}'></script>
+	<script type="text/javascript" src='{% static "materialize/js/init.js" %}'></script>
+   
+</body>
+</html>
