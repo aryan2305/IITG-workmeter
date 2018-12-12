@@ -1,3 +1,1 @@
-feedback/* linguist-vendored
-feedback/*.js linguist-vendored=false
 feedback/static/* linguist-vendored
